@@ -13,7 +13,7 @@ const MyCard = ({foodName,image_url,price}:myCardProps) => {
         <h3>{foodName}</h3>
         <p>ราคา : {price} บาท</p>
         <br />
-        <Button variant="outlined">เพิ่มลงในตะกร้า</Button>
+        <Button variant="outlined">เพิ่มสินค้า</Button>
     </Box>
    </Grid>
   )

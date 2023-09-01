@@ -19,3 +19,6 @@ object-fit: cover;
   background-color: #f9f9f9;
   padding: 5px;
 }
+.MuiButtonBase-root-MuiButton-root{
+  font-family: 'Mali';
+}

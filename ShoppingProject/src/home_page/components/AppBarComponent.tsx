@@ -12,9 +12,11 @@ import SearchIcon from "@mui/icons-material/Search";
 
 type appBarProps = {
   onChange: any;
+  word: string;
+  setWord: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const AppBarComponent = ({ onChange }: appBarProps) => {
+const AppBarComponent = ({ onChange,word ,setWord}: appBarProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -31,7 +33,7 @@ const AppBarComponent = ({ onChange }: appBarProps) => {
                 alignItems={"center"}
               >
                 <h2>หน้าหลัก</h2>
-                <FormControl sx={{ m: 1, minWidth: 200 }}>    
+                <FormControl sx={{ m: 1, minWidth: 200 }}>
                   <Select
                     labelId="demo-simple-select"
                     id="demo-simple-select"
@@ -40,21 +42,41 @@ const AppBarComponent = ({ onChange }: appBarProps) => {
                     onChange={(e) => {
                       onChange(e);
                     }}
-                    sx={{ backgroundColor: "white", height: "45px" }}
+                    sx={{
+                      backgroundColor: "white",
+                      height: "45px",
+                      fontFamily: "Mali",
+                    }}
                   >
-                    <MenuItem value="รายการอาหารทั้งหมด">
+                    <MenuItem
+                      value="รายการอาหารทั้งหมด"
+                      sx={{ fontFamily: "Mali" }}
+                    >
                       รายการอาหารทั้งหมด
                     </MenuItem>
-                    <MenuItem value="เครื่องดื่ม">เครื่องดื่ม</MenuItem>
-                    <MenuItem value="ผัด-ทอด">ผัด-ทอด</MenuItem>
-                    <MenuItem value="สเต็ก">สเต็ก</MenuItem>
-                    <MenuItem value="แกง-ต้มยำ">แกง-ต้มยำ</MenuItem>
+                    <MenuItem value="เครื่องดื่ม" sx={{ fontFamily: "Mali" }}>
+                      เครื่องดื่ม
+                    </MenuItem>
+                    <MenuItem value="ผัด-ทอด" sx={{ fontFamily: "Mali" }}>
+                      ผัด-ทอด
+                    </MenuItem>
+                    <MenuItem value="สเต็ก" sx={{ fontFamily: "Mali" }}>
+                      สเต็ก
+                    </MenuItem>
+                    <MenuItem value="แกง-ต้มยำ" sx={{ fontFamily: "Mali" }}>
+                      แกง-ต้มยำ
+                    </MenuItem>
                   </Select>
                 </FormControl>
               </Stack>
               <Box sx={searchStyle} className="search-box">
                 <SearchIcon sx={{ color: "blue" }} />
-                <input type="text" name="" id="" placeholder="ค้นหา" />
+                <input
+                  type="text"
+                  placeholder="ค้นหา"
+                  value={word}
+                  onChange={(e) => setWord(e.target.value)}
+                />
               </Box>
             </Stack>
           </Container>

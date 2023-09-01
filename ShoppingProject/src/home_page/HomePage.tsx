@@ -6,25 +6,44 @@ import { useState } from "react";
 
 const HomePage = () => {
   const [foods, setFoods] = useState(MenuData);
+  const [word, setWord] = useState<string>("");
+  const [dataFilter] = useState<any[]>(["foodName"]);
 
-  const handleSelectMenu = (e:SelectChangeEvent) => {
+  const handleSelectMenu = (e: SelectChangeEvent) => {
     console.log(e.target.value);
     const menu = e.target.value;
-    if(menu === "รายการอาหารทั้งหมด"){
-        setFoods(MenuData)
-    }else{
-        const newList = MenuData.filter((item)=>{
-            return item.menu === menu
-        })
-        setFoods(newList);
+    if (menu === "รายการอาหารทั้งหมด") {
+      setFoods(MenuData);
+    } else {
+      const newList = MenuData.filter((item) => {
+        return item.menu === menu;
+      });
+      setFoods(newList);
     }
+  };
+
+  const searchMenu = (data: any) => {
+    return data.filter((item: any) => {
+      return dataFilter.some((filter) => {
+        if (item[filter]) {
+          return (
+            item[filter].toString().toLowerCase().indexOf(word.toLowerCase()) >
+            -1
+          );
+        }
+      });
+    });
   };
   return (
     <>
-      <AppBarComponent onChange={handleSelectMenu}/>
+      <AppBarComponent
+        onChange={handleSelectMenu}
+        word={word}
+        setWord={setWord}
+      />
       <Container maxWidth="lg" component={Paper} sx={{ mt: 2 }}>
         <Grid container spacing={2}>
-          {foods.map((item , index) => {
+          {searchMenu(foods).map((item: any, index: any) => {
             return <MyCard key={index} {...item} />;
           })}
         </Grid>

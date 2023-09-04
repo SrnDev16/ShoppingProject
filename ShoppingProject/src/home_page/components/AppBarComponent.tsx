@@ -9,6 +9,7 @@ import {
   Toolbar,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import CartPage from "./CartPage";
 
 type appBarProps = {
   onChange: any;
@@ -16,7 +17,7 @@ type appBarProps = {
   setWord: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const AppBarComponent = ({ onChange,word ,setWord}: appBarProps) => {
+const AppBarComponent = ({ onChange, word, setWord }: appBarProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -69,15 +70,22 @@ const AppBarComponent = ({ onChange,word ,setWord}: appBarProps) => {
                   </Select>
                 </FormControl>
               </Stack>
-              <Box sx={searchStyle} className="search-box">
-                <SearchIcon sx={{ color: "blue" }} />
-                <input
-                  type="text"
-                  placeholder="ค้นหา"
-                  value={word}
-                  onChange={(e) => setWord(e.target.value)}
-                />
-              </Box>
+              <Stack
+                direction={"row"}
+                justifyContent={"space-between"}
+                alignItems={"center"}
+              >
+                <Box sx={searchStyle} className="search-box">
+                  <SearchIcon sx={{ color: "blue" }} />
+                  <input
+                    type="text"
+                    placeholder="ค้นหา"
+                    value={word}
+                    onChange={(e) => setWord(e.target.value)}
+                  />
+                </Box>
+                <CartPage />
+              </Stack>
             </Stack>
           </Container>
         </Toolbar>
@@ -93,6 +101,7 @@ export const searchStyle = {
   backgroundColor: "white",
   borderRadius: "5px",
   height: "30px",
+  marginRight: "10px",
 };
 
 export default AppBarComponent;

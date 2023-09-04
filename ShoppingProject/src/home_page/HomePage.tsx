@@ -15,7 +15,7 @@ const HomePage = () => {
   const handleSelectMenu = (e: SelectChangeEvent) => {
     console.log(e.target.value);
     const menu = e.target.value;
-    if (menu === "รายการอาหารทั้งหมด") {
+    if (menu === "รายการอาหารทั้งหมด" ) {
       setFoods(MenuData);
     } else {
       const newList = MenuData.filter((item) => {
@@ -55,7 +55,7 @@ const HomePage = () => {
           setWord={setWord}
         />
         <Container maxWidth="lg" component={Paper} sx={{ mt: 2 }}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} justifyContent={"center"}>
             {searchMenu(foods).map((item: any, index: any) => {
               return (
                 <MyCard

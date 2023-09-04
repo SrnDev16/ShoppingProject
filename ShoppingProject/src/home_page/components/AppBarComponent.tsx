@@ -3,6 +3,7 @@ import {
   Box,
   Container,
   FormControl,
+  Grid,
   MenuItem,
   Select,
   Stack,
@@ -23,70 +24,70 @@ const AppBarComponent = ({ onChange, word, setWord }: appBarProps) => {
       <AppBar position="static">
         <Toolbar>
           <Container maxWidth="xl">
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              alignItems={"center"}
-            >
-              <Stack
-                direction={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
-                <h2>หน้าหลัก</h2>
-                <FormControl sx={{ m: 1, minWidth: 200 }}>
-                  <Select
-                    labelId="demo-simple-select"
-                    id="demo-simple-select"
-                    label="รายการอาหาร"
-                    defaultValue={"รายการอาหารทั้งหมด"}
-                    onChange={(e) => {
-                      onChange(e);
-                    }}
-                    sx={{
-                      backgroundColor: "white",
-                      height: "45px",
-                      fontFamily: "Mali",
-                    }}
-                  >
-                    <MenuItem
-                      value="รายการอาหารทั้งหมด"
-                      sx={{ fontFamily: "Mali" }}
+            <Grid container spacing={2} alignItems={"center"} justifyContent={"center"}>
+              <Grid item lg={9} md={6} sm={6} justifyContent={"center"}>
+                <Stack
+                  direction={"row"}
+                  justifyContent={"start"}
+                  alignItems={"center"}
+                >
+                  <h2 onClick={()=>{window.location.reload()}} style={{cursor:"pointer"}}>หน้าหลัก</h2>
+                  <FormControl sx={{ m: 1, minWidth: 200 }}>
+                    <Select
+                      labelId="demo-simple-select"
+                      id="demo-simple-select"
+                      label="รายการอาหาร"
+                      defaultValue={"รายการอาหารทั้งหมด"}
+                      onChange={(e) => {
+                        onChange(e);
+                      }}
+                      sx={{
+                        backgroundColor: "white",
+                        height: "45px",
+                        fontFamily: "Mali",
+                      }}
                     >
-                      รายการอาหารทั้งหมด
-                    </MenuItem>
-                    <MenuItem value="เครื่องดื่ม" sx={{ fontFamily: "Mali" }}>
-                      เครื่องดื่ม
-                    </MenuItem>
-                    <MenuItem value="ผัด-ทอด" sx={{ fontFamily: "Mali" }}>
-                      ผัด-ทอด
-                    </MenuItem>
-                    <MenuItem value="สเต็ก" sx={{ fontFamily: "Mali" }}>
-                      สเต็ก
-                    </MenuItem>
-                    <MenuItem value="แกง-ต้มยำ" sx={{ fontFamily: "Mali" }}>
-                      แกง-ต้มยำ
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Stack>
-              <Stack
-                direction={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-              >
-                <Box sx={searchStyle} className="search-box">
-                  <SearchIcon sx={{ color: "blue" }} />
-                  <input
-                    type="text"
-                    placeholder="ค้นหา"
-                    value={word}
-                    onChange={(e) => setWord(e.target.value)}
-                  />
-                </Box>
-                <CartPage />
-              </Stack>
-            </Stack>
+                      <MenuItem
+                        value="รายการอาหารทั้งหมด"
+                        sx={{ fontFamily: "Mali" }}
+                      >
+                        รายการอาหารทั้งหมด
+                      </MenuItem>
+                      <MenuItem value="เครื่องดื่ม" sx={{ fontFamily: "Mali" }}>
+                        เครื่องดื่ม
+                      </MenuItem>
+                      <MenuItem value="ผัด-ทอด" sx={{ fontFamily: "Mali" }}>
+                        ผัด-ทอด
+                      </MenuItem>
+                      <MenuItem value="สเต็ก" sx={{ fontFamily: "Mali" }}>
+                        สเต็ก
+                      </MenuItem>
+                      <MenuItem value="แกง-ต้มยำ" sx={{ fontFamily: "Mali" }}>
+                        แกง-ต้มยำ
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Stack>
+              </Grid>
+              <Grid item lg={3} md={6} sm={6}  justifyContent={"center"}>
+                <Stack
+                  direction={"row"}
+                  justifyContent={"end"}
+                  alignItems={"center"}
+                >
+                  <Box sx={searchStyle} className="search-box">
+                    <SearchIcon sx={{ color: "blue" }} />
+                    <input
+                      type="text"
+                      placeholder="(กรุณาเลือกเมนูทั้งหมด)"
+                      value={word}
+                      onChange={(e) => setWord(e.target.value)}
+                    />
+                  </Box>
+                  <CartPage />
+                </Stack>
+              </Grid>
+            </Grid>
           </Container>
         </Toolbar>
       </AppBar>

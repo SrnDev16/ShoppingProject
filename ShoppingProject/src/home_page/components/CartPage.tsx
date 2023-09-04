@@ -1,5 +1,5 @@
 import { Modal, Box, Typography, IconButton } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { DataContext } from "../HomePage";
 import AddIcon from "@mui/icons-material/Add";
@@ -11,6 +11,7 @@ const CartPage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { cart, setCart } = useContext(DataContext);
+  // const [total, setTotal] = useState<number>(0);
 
   const increaseQuantity = (id: string, index: string) => {
     const menu = cart.find((item: any) => {
@@ -22,12 +23,12 @@ const CartPage = () => {
     console.log(menu);
   };
 
-  const decreaseQuantity = (id: string,index:string) => {
+  const decreaseQuantity = (id: string, index: string) => {
     const menu = cart.find((item: any) => {
       return item.id === id;
     });
     menu.quantity -= 1;
-    const newCart = cart.splice(index, 1 , menu)
+    const newCart = cart.splice(index, 1, menu);
     setCart(newCart);
     if (menu["quantity"] < 1) {
       removeItem(id);
@@ -43,10 +44,6 @@ const CartPage = () => {
     });
     setCart(newCart);
   };
-
-  useEffect(() => {
-    setCart(cart);
-  }, [cart]);
 
   return (
     <>
@@ -74,7 +71,7 @@ const CartPage = () => {
                   <div className="list-cart quantity">
                     <IconButton
                       onClick={() => {
-                        decreaseQuantity(item.id,index);
+                        decreaseQuantity(item.id, index);
                       }}
                     >
                       <RemoveIcon />
@@ -107,7 +104,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 800,
+  width: "90%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
